@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An in-depth article by Dhiraj on how AI is changing software development, learning, creativity, and everyday work.">
+  <title>From Writing Every Line to Building What Matters — Dhiraj</title>
+  <style>
+    :root {
+      --ink: #182235;
+      --muted: #5d6b82;
+      --paper: #f7f9fc;
+      --card: #ffffff;
+      --line: #e3e9f2;
+      --blue: #4263eb;
+      --violet: #8157e5;
+      --mint: #dff8ee;
+      --shadow: 0 18px 50px rgba(28, 43, 76, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+    }
+    a { color: var(--blue); }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1120px; margin: auto; padding: 22px 24px;
+      font-size: .92rem; color: var(--muted);
+    }
+    .brand { font-weight: 850; letter-spacing: -.04em; color: var(--ink); font-size: 1.15rem; }
+    .brand span { color: var(--blue); }
+    .hero {
+      max-width: 1120px; margin: 20px auto 0; padding: 64px 24px 48px;
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 42px; align-items: center;
+    }
+    .eyebrow {
+      display: inline-block; color: var(--blue); background: #e9edff;
+      border-radius: 999px; padding: 6px 12px; font-size: .78rem;
+      font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    }
+    h1 { font-size: clamp(2.6rem, 5.6vw, 4.9rem); line-height: 1.04; letter-spacing: -.065em; margin: 22px 0; }
+    .dek { color: var(--muted); font-size: 1.18rem; max-width: 650px; }
+    .byline { margin-top: 26px; display: flex; gap: 12px; align-items: center; color: var(--muted); font-size: .92rem; }
+    .avatar {
+      width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%;
+      color: white; background: linear-gradient(135deg, var(--blue), var(--violet)); font-weight: 800;
+    }
+    .hero-art {
+      min-height: 370px; position: relative; overflow: hidden; border-radius: 30px;
+      background: radial-gradient(circle at 70% 24%, #a7b9ff 0, transparent 27%),
+                  radial-gradient(circle at 22% 78%, #a4f0d6 0, transparent 30%),
+                  linear-gradient(135deg, #111d3c, #263c75 58%, #6849b9);
+      box-shadow: var(--shadow); padding: 25px; color: white;
+    }
+    .art-grid { position: absolute; inset: 0; opacity: .17; background-image: linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to bottom right, black, transparent 85%); }
+    .orb { position: absolute; width: 170px; height: 170px; border-radius: 50%; top: 72px; left: 50%; transform: translateX(-50%); background: radial-gradient(circle at 30% 25%, #fff 0, #b6c8ff 8%, #788dff 30%, #7955d9 65%, #372d86 100%); box-shadow: 0 0 65px #91a5ff88, inset -20px -22px 40px #171d5e88; }
+    .orbit { position: absolute; width: 255px; height: 100px; border: 1px solid #d9e0ff99; border-radius: 50%; top: 110px; left: 50%; transform: translateX(-50%) rotate(-25deg); }
+    .orbit.two { transform: translateX(-50%) rotate(50deg); width: 235px; }
+    .node { position: absolute; padding: 10px 13px; border-radius: 13px; background: #ffffff18; border: 1px solid #ffffff40; backdrop-filter: blur(8px); font-size: .82rem; font-weight: 700; }
+    .node.n1 { top: 42px; left: 22px; } .node.n2 { top: 55px; right: 20px; }
+    .node.n3 { bottom: 75px; left: 24px; } .node.n4 { bottom: 42px; right: 20px; }
+    .art-caption { position: absolute; bottom: 17px; left: 25px; color: #dce5ff; font-size: .76rem; letter-spacing: .04em; }
+    main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 28px; }
+    .pill { background: #eef1f7; color: #526078; padding: 5px 10px; border-radius: 999px; font-size: .8rem; }
+    .intro { font-size: 1.16rem; color: #344158; }
+    h2 { margin-top: 52px; font-size: clamp(1.7rem, 3vw, 2.25rem); letter-spacing: -.04em; line-height: 1.2; }
+    h3 { margin-top: 28px; font-size: 1.2rem; letter-spacing: -.02em; }
+    p { margin: 17px 0; }
+    .callout { border-left: 4px solid var(--blue); background: #edf1ff; padding: 22px 24px; border-radius: 0 16px 16px 0; margin: 30px 0; font-size: 1.08rem; }
+    .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
+    .feature { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: 0 5px 18px #1d2b4510; }
+    .feature .icon { font-size: 1.65rem; }
+    .feature h3 { margin: 10px 0 5px; }
+    .feature p { color: var(--muted); font-size: .94rem; margin: 8px 0 0; }
+    .timeline { margin: 25px 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: white; }
+    .timeline-row { display: grid; grid-template-columns: 155px 1fr; gap: 18px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+    .timeline-row:last-child { border-bottom: 0; }
+    .timeline-row strong { color: var(--blue); }
+    .quote { font-size: 1.55rem; line-height: 1.45; letter-spacing: -.03em; font-weight: 750; padding: 28px 0; }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li { padding: 12px 12px 12px 42px; position: relative; border-bottom: 1px solid var(--line); }
+    .checklist li::before { content: "✓"; position: absolute; left: 10px; top: 12px; color: #16845e; font-weight: 900; }
+    .closing { background: linear-gradient(135deg, #172344, #3d4e9a); color: white; border-radius: 24px; padding: 32px; margin-top: 46px; }
+    .closing h2 { margin-top: 0; }
+    .closing p { color: #e0e7ff; }
+    footer { border-top: 1px solid var(--line); padding: 28px 24px; text-align: center; color: var(--muted); font-size: .88rem; }
+    .toc { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 20px 24px; margin: 26px 0; }
+    .toc strong { display: block; margin-bottom: 8px; }
+    .toc ul { margin: 0; padding-left: 20px; columns: 2; }
+    .toc li { padding: 3px 0; }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding-top: 34px; gap: 28px; }
+      .hero-art { min-height: 320px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .toc ul { columns: 1; }
+      .topbar { padding: 18px 20px; }
+    }
+    @media print {
+      body { background: white; }
+      .hero-art, .feature, .closing { box-shadow: none; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">IDEAS<span>/</span>IN PRACTICE</div>
+    <div>Technology · Learning · The Future of Work</div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Technology &amp; Society</span>
+      <h1>From Writing Every Line to Building What Matters</h1>
+      <p class="dek">How artificial intelligence is changing software development, the way we learn, and what it means to get meaningful work done.</p>
+      <div class="byline">
+        <div class="avatar">D</div>
+        <div><strong style="color:var(--ink)">Dhiraj</strong><br><span>Published October 15, 2026 · 9 min read</span></div>
+      </div>
+    </div>
+    <div class="hero-art" role="img" aria-label="Abstract illustration of an AI core connected to software, learning, ideas, and productivity">
+      <div class="art-grid"></div><div class="orbit"></div><div class="orbit two"></div><div class="orb"></div>
+      <div class="node n1">⌘ Software</div><div class="node n2">✦ AI models</div>
+      <div class="node n3">↗ Learning</div><div class="node n4">◎ Human ideas</div>
+      <div class="art-caption">HUMAN CREATIVITY × MACHINE ASSISTANCE</div>
+    </div>
+  </section>
+
+  <main>
+    <div class="article-meta"><span class="pill">Artificial Intelligence</span><span class="pill">Software Engineering</span><span class="pill">Education</span><span class="pill">Productivity</span></div>
+    <p class="intro">Not long ago, building software often meant spending hours searching documentation, tracing bugs, writing repetitive code, and piecing together unfamiliar concepts. Learning a new skill could mean moving between textbooks, tutorials, forums, and trial-and-error. Those activities still matter—but AI is changing how we approach them.</p>
+    <p>Artificial intelligence has become more than a topic for research labs or a feature hidden inside a product. For many people, it is now a collaborator: a tool that can explain, draft, compare, summarize, generate, and help us explore possibilities. The biggest change is not simply that tasks can be completed faster. It is that the distance between having an idea and testing it is becoming shorter.</p>
+
+    <nav class="toc" aria-label="Table of contents">
+      <strong>In this article</strong>
+      <ul>
+        <li><a href="#software">Software development</a></li>
+        <li><a href="#learning">Learning and education</a></li>
+        <li><a href="#work">Everyday work</a></li>
+        <li><a href="#creativity">Creativity and access</a></li>
+        <li><a href="#risks">Risks and responsibility</a></li>
+        <li><a href="#future">What comes next</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="software">1. Software development: from typing code to solving problems</h2>
+    <p>Traditional software engineering has always required much more than writing syntax. Developers need to understand requirements, design systems, choose data structures, test behavior, protect users, and maintain software over time. Yet a large portion of the day can be consumed by repetitive or time-consuming steps. AI coding assistants can help reduce some of that friction.</p>
+
+    <div class="feature-grid">
+      <div class="feature"><div class="icon">⌨️</div><h3>Faster first drafts</h3><p>AI can suggest functions, tests, documentation, interface components, and common code patterns from a natural-language description.</p></div>
+      <div class="feature"><div class="icon">🧭</div><h3>Help navigating unfamiliar code</h3><p>Developers can ask for explanations of a function, a project structure, or an error message instead of beginning every investigation from scratch.</p></div>
+      <div class="feature"><div class="icon">🧪</div><h3>More attention to testing</h3><p>AI can propose edge cases, test scaffolding, and debugging hypotheses—but the results still need to be run and verified.</p></div>
+      <div class="feature"><div class="icon">🧱</div><h3>Prototyping becomes accessible</h3><p>A small team or solo builder can explore app screens, APIs, and proof-of-concept ideas before investing in a full implementation.</p></div>
+    </div>
+
+    <p>Consider a developer building an expense-tracking app. In the past, they might spend a long session researching chart libraries, writing a first version of a screen, and diagnosing layout issues. With AI, they can describe the intended experience, get a starting point, ask why a component is overflowing, and request test ideas. They still need to decide how the feature should behave, check accessibility, protect financial data, and ensure the code fits the rest of the application.</p>
+
+    <div class="callout"><strong>The key shift:</strong> AI can make producing a first draft cheaper. It does not make good requirements, sound architecture, security, testing, or judgment optional.</div>
+
+    <p>This changes the developer's role rather than eliminating it. More time can go toward understanding users, making trade-offs, reviewing generated code, and deciding which problem is worth solving. But it also raises the bar: if code is easier to produce, the quality of the decisions around that code becomes even more important.</p>
+
+    <h2 id="learning">2. Learning: from searching for answers to learning through dialogue</h2>
+    <p>Learning has often depended on finding the right explanation at the right moment. A beginner might watch a long tutorial, get stuck on one unfamiliar term, and lose momentum. AI can provide a different experience: an interactive tutor that adapts an explanation, gives examples, asks practice questions, and tries another approach when the first one does not make sense.</p>
+    <p>Imagine learning JavaScript. Instead of only reading about asynchronous functions, a learner can ask for a beginner-friendly explanation, request a real-world example, try a small exercise, and ask for a hint when stuck. The learner can then compare the explanation with trusted documentation and test the code in an actual environment.</p>
+
+    <div class="timeline" aria-label="How the learning process can change">
+      <div class="timeline-row"><strong>Before</strong><span>Search across tutorials, documentation, videos, and forums to find an explanation that fits.</span></div>
+      <div class="timeline-row"><strong>With AI assistance</strong><span>Ask a focused question, request a simpler explanation, generate practice tasks, and get feedback on an attempt.</span></div>
+      <div class="timeline-row"><strong>Best outcome</strong><span>Use AI to overcome friction, then build real understanding through practice, recall, projects, and independent problem-solving.</span></div>
+    </div>
+
+    <p>There is a catch: receiving an answer is not the same as learning. If AI writes every assignment or solves every problem before a learner tries, the learner may feel productive while remembering very little. A better approach is to ask for hints before full solutions, explain the answer back in your own words, and attempt a similar problem without assistance.</p>
+
+    <h2 id="work">3. Everyday work: less busywork, more room for judgment</h2>
+    <p>AI is also changing tasks outside programming. People use it to outline reports, summarize long documents, brainstorm campaign ideas, organize meeting notes, draft emails, analyze spreadsheets, translate text, and turn rough notes into clearer communication. These uses can reduce the effort required to get started.</p>
+    <p>For example, a project manager can turn a meeting transcript into draft action items. A student can ask for a study plan. A small business owner can create an initial product description. A designer can explore several directions before refining one. In each case, AI offers a starting point—not necessarily a finished result.</p>
+    <p>The most useful workflow often combines machine speed with human context: let AI create options, then apply the real constraints, relationships, priorities, and standards that the model may not know.</p>
+
+    <h2 id="creativity">4. Creativity and access: more people can make things</h2>
+    <p>Many people have ideas but lack one of the skills, tools, time, or resources needed to bring them to life. AI can lower some of those barriers. Someone with limited design experience can explore a visual concept. A new programmer can build a prototype. A non-native speaker can improve the clarity of a draft. A small team can test more alternatives before choosing a direction.</p>
+    <p>This does not mean expertise no longer matters. Experienced people often get more from AI because they can recognize weak output, ask better questions, and make informed revisions. In creative work, the tool may generate many possibilities, but taste, intent, originality, and the final choices still belong to the person or team.</p>
+
+    <div class="quote">“The advantage is not just making things faster. It is being able to explore more ideas, learn from the attempts, and choose with greater intention.”</div>
+
+    <h2 id="risks">5. The risks: speed without judgment can create new problems</h2>
+    <p>AI output can be confident and still be wrong. Generated code may contain bugs or security vulnerabilities. A summary may omit a critical detail. A citation may not support the claim attached to it. An answer can also reflect outdated information or assumptions that do not apply to the situation.</p>
+    <p>There are wider concerns, too: privacy, copyright, bias, over-reliance, unequal access, and the impact of automation on jobs. Pasting confidential company data or personal information into an unapproved tool can create real risks. Using generated work without understanding it can leave people unable to maintain or defend their own decisions.</p>
+    <h3>How to use AI more responsibly</h3>
+    <ul class="checklist">
+      <li><strong>Verify important claims.</strong> Check facts, sources, calculations, and recommendations against reliable evidence.</li>
+      <li><strong>Test generated code.</strong> Review it, run it, check edge cases, and use appropriate security and quality tools.</li>
+      <li><strong>Protect private information.</strong> Follow workplace and school policies; avoid sharing sensitive data with unapproved services.</li>
+      <li><strong>Keep your own thinking active.</strong> Ask for explanations and alternatives, not only final answers.</li>
+      <li><strong>Be transparent when it matters.</strong> Follow relevant rules for disclosure, authorship, and academic or professional work.</li>
+      <li><strong>Remember who is accountable.</strong> A human or organization remains responsible for consequential decisions and published work.</li>
+    </ul>
+
+    <h2 id="future">6. The future: AI fluency alongside human fundamentals</h2>
+    <p>As AI tools improve, the most valuable skills will not be limited to writing prompts. People will benefit from defining problems clearly, evaluating evidence, communicating well, understanding their domain, and knowing when not to automate. Technical fundamentals—debugging, data modeling, architecture, privacy, and testing—remain essential because they help people judge whether AI-generated work is actually good.</p>
+    <p>AI fluency means knowing how to delegate a suitable task, provide useful context, inspect the output, and iterate. It also means recognizing the boundaries of the tool. Some problems require current sources, real-world testing, expert review, empathy, or direct conversations with the people affected.</p>
+    <p>For students, that means learning how to learn—not simply how to obtain answers. For developers, it means using AI to accelerate exploration while keeping ownership of design and reliability. For organizations, it means improving workflows thoughtfully rather than adopting technology just because it is new.</p>
+
+    <div class="closing">
+      <h2>Final thought: the tool is changing, the responsibility is not</h2>
+      <p>AI is reshaping software development, education, creativity, and everyday work by making assistance more immediate and experimentation more accessible. It can help us move from blank pages to first drafts, from confusion to a useful explanation, and from an idea to a working prototype.</p>
+      <p>But meaningful progress still depends on curiosity, effort, critical thinking, and responsibility. The strongest users of AI will not necessarily be those who ask it to do everything. They will be the people who know what to ask, how to check the answer, and what to do with it.</p>
+      <p><strong>Use AI to extend your abilities—not to surrender your judgment.</strong></p>
+    </div>
+  </main>
+
+  <footer>
+    <div><strong>Dhiraj</strong> · Published October 15, 2026</div>
+    <div>An independent article on AI, software, learning, and modern work.</div>
+  </footer>
+</body>
+</html>
